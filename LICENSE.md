@@ -1,0 +1,1 @@
+Something from here (MIT license): https://github.com/app-generator/django-dashboard-dattaable/blob/master/core/

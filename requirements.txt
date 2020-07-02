@@ -1,0 +1,5 @@
+Django
+autopep8
+pycodestyle
+openlocationcode
+-e git://github.com/r3versi/connprodpy.git#egg=conn-prod

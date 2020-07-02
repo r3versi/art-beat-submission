@@ -1,7 +1,16 @@
+#SECRETS!
+secrets.py
+
+#pip packages installed
+src/ 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+#VSCode
+.vscode/
 
 # C extensions
 *.so
