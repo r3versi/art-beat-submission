@@ -19,4 +19,4 @@ Run the webserver:
 
 You can enjoy our dashbord on http://127.0.0.1:8000/ !
 
-Rename the file art_beat/art_beat/settings.example.py to art_beat/art_beat/settings.py and insert your api_key
+Rename the file art_beat/art_beat/secrets.example.py to art_beat/art_beat/secrets.py and insert your api_key
