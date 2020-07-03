@@ -4,14 +4,14 @@ class Room(models.Model):
     description = models.TextField()
 
 
+class Author(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+
 class Paintings(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     description = models.TextField()
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-
-
-class Author(models.Model):
-    name = models.CharField(max_length=50, unique=True)
 
 
 class Camera(models.Model):
@@ -30,3 +30,13 @@ class RoomVisitors(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     visitors = models.IntegerField()
     datetime = models.DateTimeField(auto_now_add=True)
+
+
+#######
+
+
+class Word(models.Model):
+    word = models.CharField(max_length=50)
+    usages = models.IntegerField()
+    lastused = models.DateTimeField(auto_now=True)
+
