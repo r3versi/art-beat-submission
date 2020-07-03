@@ -91,11 +91,9 @@ def submitSpeech(request):
 
 def submitImage ():
     import requests
-    #from PIL import Image
+    
     URL = "https://hackathon.tim.it/peddetect/detect"
-    filename = "./0.jpg"
-    #image = Image.open(filename)
-    im2str = image2base64string (filename)
+    filename = "C:/Users/alexi/Desktop/progs/Git/art-beat/art_beat/security_images/0.jpeg"
     PEDESTRIAN_API_KEY = "U2FRGRrBNxEHANXheJcKmhbK0v5CyVPT"
     
     headers = {
@@ -103,11 +101,11 @@ def submitImage ():
         'apikey': PEDESTRIAN_API_KEY
         }
     
-    body = {
-            "image": image2base64string(filename)
-        }
+    # body = {
+    #         image2base64string(filename)
+    #     }
     
-    data = "{%s}" %image2base64string(filename)
+    data = image2base64string(filename)
     
     response = requests.post(URL, headers = headers, data = data)
     #response = requests.post(URL, headers = headers, json = body)
