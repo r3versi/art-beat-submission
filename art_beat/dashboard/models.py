@@ -40,3 +40,20 @@ class Word(models.Model):
     usages = models.IntegerField()
     lastused = models.DateTimeField(auto_now=True)
 
+#####
+
+class Feedback(models.Model):
+    googleId = models.CharField(max_length=50, unique=True)
+    datetime = models.DateTimeField(auto_now_add=True)
+    language = models.CharField(max_length=5)
+    text = models.TextField(blank=True)
+    confidence = models.FloatField(null=True)
+    magnitude = models.FloatField(null=True, blank=True, default=None)
+    score = models.FloatField(null=True, blank=True, default=None)
+
+class Sentence(models.Model):
+    feedback = models.ForeignKey(Feedback, on_delete=models.CASCADE)
+    text = models.TextField(blank=True)
+    score = models.FloatField()
+    magnitude = models.FloatField()
+

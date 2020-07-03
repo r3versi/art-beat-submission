@@ -1,0 +1,85 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Feedbacks {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <div class="col-xl-6 col-md-6 my-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Word Cloud</h5>
+                    </div>
+                    <div class="card-block px-5 py-5">
+                        <img src="{% url 'get-word-cloud' %}" alt="Word Cloud" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6 my-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Scores</h5>
+                    </div>
+                    <div class="card-block px-5 py-5">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-md-6">
+                <div class="card Feedbacks">
+                    <div class="card-header">
+                        <h5>Feedbacks</h5>
+                    </div>
+                    <div class="card-block px-0 py-3">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-feedbacks">
+                                <tbody>
+                                    {% for obj in feedbacks %}
+                                    <tr class="unread">
+                                        <td class="sentiment-score-bar
+                                        {%if obj.feedback.score > 0.3 %} good
+                                        {% elif obj.feedback.score < -0.3 %} bad
+                                        {% else %} neutral 
+                                        {% endif %}"></td>
+                                        <td>
+                                            <img src="/static/assets/images/flags/{{ obj.feedback.language }}.png" class="lang-icon" />
+                                        </td>
+                                        <td>
+                                            <p>
+                                                {% for sentence in obj.sentences %} 
+                                                <span title="{{ sentence.score }}" class="sentence 
+                                                {%if sentence.score > 0.3 %} good
+                                                {% elif sentence.score < -0.3 %} bad
+                                                {% else %} neutral 
+                                                {% endif %}">
+                                                    {{ sentence.text }}
+                                                </span> 
+                                                {% endfor %}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,37 @@
+.sentiment-score-bar {
+    width: 5px;
+}
+
+.table-feedbacks {
+    white-space: normal;
+    word-wrap: normal;
+}
+
+.lang-icon {
+    width: 25px;
+}
+
+.sentence { 
+    border-bottom: 2px dotted; 
+}
+
+.neutral {
+    border-color: #6cf3ff83;
+}
+.neutral:hover {
+    background-color: #6cf3ff83;
+}
+
+.good {
+    border-color: #00ff008e;
+}
+.good:hover {
+    background-color: #00ff008e;
+}
+
+.bad { 
+    border-color :#ff000071;
+}
+.bad:hover { 
+    background-color :#ff000071;
+}
