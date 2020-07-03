@@ -57,6 +57,12 @@ def wav2base64string(filename):
     from base64 import b64encode
     with open(filename, "rb") as f:
         return b64encode(f.read()).decode('utf-8')
+    
+
+def image2base64string (filename):
+    from base64 import b64encode
+    with open(filename, "rb") as file:
+        return b64encode(file.read()).decode('utf-8')
 
 
 def submitSpeech(request):
@@ -81,6 +87,35 @@ def submitSpeech(request):
 
     response = requests.post("https://hackathon.tim.it/gcloudspeechtotext/v1/speech:longrunningrecognize", headers=headers, json=body)
     return HttpResponse(content=response.text, content_type="application/json")
+
+
+def submitImage ():
+    import requests
+    #from PIL import Image
+    URL = "https://hackathon.tim.it/peddetect/detect"
+    filename = "./0.jpg"
+    #image = Image.open(filename)
+    im2str = image2base64string (filename)
+    PEDESTRIAN_API_KEY = "U2FRGRrBNxEHANXheJcKmhbK0v5CyVPT"
+    
+    headers = {
+        'Content-Type': 'image/*',
+        'apikey': PEDESTRIAN_API_KEY
+        }
+    
+    body = {
+            "image": image2base64string(filename)
+        }
+    
+    data = "{%s}" %image2base64string(filename)
+    
+    response = requests.post(URL, headers = headers, data = data)
+    #response = requests.post(URL, headers = headers, json = body)
+    #return HttpResponse(content = response.text, content_type = "application/json")
+    
+    print("Status code: {}".format(response.status_code))
+    print("Header: {}".format(response.headers))
+    print("Text: {}".format(response.text))
 
 
 def security(request):
