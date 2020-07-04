@@ -186,25 +186,19 @@ def getScoreHistogram(request):
     return response
 
 
-def submitImage(request):
-    import requests
-
+def runPedestrianDetection(request, filename = "0.jpeg"):
+    
     URL = "https://hackathon.tim.it/peddetect/detect"
-
-    filename = "./security_images/0.jpeg"
-
+    
+    filePath = "./security_images/%s" %filename
+    
     headers = {
         'Content-Type': 'image/*',
         'apikey': TIM_API_KEY
     }
-
-    with open(filename, 'rb') as f:
+    
+    with open(filePath, 'rb') as f:
         data = f.read()
-
+    
     response = requests.post(URL, headers=headers, data=data)
-
-    print("Status code: {}".format(response.status_code))
-    print("Header: {}".format(response.headers))
-    print("Text: {}".format(response.text))
-
     return HttpResponse(content=response.text, content_type="application/json")
