@@ -1,6 +1,8 @@
+from datetime import timedelta
+from django.utils import timezone
 from django.http import HttpResponse, JsonResponse
 
-from .models import Feedback, Sentence
+from .models import *
 
 from art_beat.secrets import TIM_API_KEY
 import json
@@ -184,6 +186,13 @@ def getScoreHistogram(request):
     response = HttpResponse(content_type="image/png")
     img.save(response, "PNG")
     return response
+
+
+def updateCameras(request):
+
+    for camera in Camera.objects.filter(last_update__lte=timezone.now()-timedelta(seconds=300)):
+        
+
 
 
 def submitImage(request):

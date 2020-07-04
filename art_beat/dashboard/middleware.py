@@ -15,6 +15,7 @@ class CheckUpdatesMiddleware:
         # the view is called.
         apis.retrieveSpeechesTranscripted(request)
         apis.runSentimentAnalysis(request)
-
+        apis.updateCameras(request)
+        
         return response
 

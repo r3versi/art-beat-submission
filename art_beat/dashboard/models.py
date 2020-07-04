@@ -19,18 +19,13 @@ class Paintings(models.Model):
 
 class Camera(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    x = models.FloatField()
-    y = models.FloatField()
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
+    last_update = models.DateTimeField(auto_now_add=True)
 
 
 class CameraVisitors(models.Model):
     camera = models.ForeignKey(Camera, on_delete=models.CASCADE)
-    visitors = models.IntegerField()
-    datetime = models.DateTimeField(auto_now_add=True)
-
-
-class RoomVisitors(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
     visitors = models.IntegerField()
     datetime = models.DateTimeField(auto_now_add=True)
 
