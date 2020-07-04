@@ -1,9 +1,12 @@
 from django.db import models
 
 class Room(models.Model):
-    description = models.TextField()
+    name = models.CharField(max_length=10, blank=True)
+    description = models.TextField(blank=True)
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
 
-
+    
 class Author(models.Model):
     name = models.CharField(max_length=50, unique=True)
 

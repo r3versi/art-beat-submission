@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django import template
 from django.views.generic.list import ListView
 
-from .models import Feedback, Sentence
+from .models import *
 
 
 
@@ -28,7 +28,10 @@ def feedbacks(request):
 
 
 def environment(request):
-    context = {}
+
+    rooms = Room.objects.all()
+    context = {"rooms": rooms}
+
     return render(request, "environment.html", context)
 
 def audience(request):

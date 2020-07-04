@@ -35,3 +35,25 @@
 .bad:hover { 
     background-color :#ff000071;
 }
+
+
+.plant-bg {
+    background-image: url("../../plant.png");
+    background-repeat: no-repeat;
+    height: 397px;
+    background-position: center;
+}
+
+
+.dot {
+  height: 30px;
+  width: 30px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot:hover {
+    background-color: rgb(153, 132, 132);
+    transform: scale(1.4);
+}
