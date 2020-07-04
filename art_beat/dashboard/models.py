@@ -5,6 +5,7 @@ class Room(models.Model):
     description = models.TextField(blank=True)
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
+    mq = models.FloatField(default=0)
 
     
 class Author(models.Model):

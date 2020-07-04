@@ -6,7 +6,7 @@ from django import template
 from django.views.generic.list import ListView
 
 from .models import *
-
+from math import floor
 
 
 def index(request):
@@ -22,6 +22,8 @@ def security(request):
             visitors += CameraVisitors.objects.filter(camera=camera).last().visitors
         
         room.visitors = visitors
+        room.capacity = int(floor(room.mq / 7.0))
+
         out_rooms.append(room)
 
     context = {"rooms": out_rooms}

@@ -193,7 +193,11 @@ def updateCameras(request):
     from random import choice
 
     security_images = glob("security_images/*.jpeg")
+
     for camera in Camera.objects.filter(last_update__lte=timezone.now()-timedelta(seconds=300)):
+
+        if CameraVisitors.objects.filter(datetime__gte=timezone.now()-timedelta(seconds=10)).count():
+            return
         
         security_image = choice(security_images)
         response = runPedestrianDetection(security_image)
@@ -209,7 +213,7 @@ def updateCameras(request):
         camera.last_update = timezone.now()
         camera.save()
 
-        print(camera, cv,  security_image, people)
+        print(camera, cv,  security_image, people, response)
 
 def runPedestrianDetection(filename="security_images/0.jpeg"):
 

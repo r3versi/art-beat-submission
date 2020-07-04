@@ -37,6 +37,19 @@
 }
 
 
+.good-crowd {
+    background-color: #00ff008e;
+}
+
+.bad-crowd {
+    background-color: #ff000071;
+}
+
+.risky-crowd {
+    background-color:  rgb(255, 180, 17);
+}
+
+
 .plant-bg {
     background-image: url("../../plant.png");
     background-repeat: no-repeat;
@@ -48,12 +61,11 @@
 .dot {
   height: 30px;
   width: 30px;
-  background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
+  padding: 0.3%;
 }
 
 .dot:hover {
-    background-color: rgb(153, 132, 132);
     transform: scale(1.4);
 }
