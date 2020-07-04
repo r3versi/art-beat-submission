@@ -3,5 +3,6 @@ autopep8
 pycodestyle
 openlocationcode
 wordcloud
+seaborn
 -e git://github.com/r3versi/connprodpy.git#egg=conn-prod
 -e git://github.com/r3versi/gcloud-speech-to-text.git#egg=gcloud-speech-to-text

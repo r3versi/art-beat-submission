@@ -152,7 +152,59 @@ def getWordCloud(request):
     wc.generate(text)
     img = wc.to_image()
 
-    response = HttpResponse(content_type="image/jpeg")
-    img.save(response, format='JPEG')
+    response = HttpResponse(content_type="image/png")
+    img.save(response, format='PNG')
     return response
 
+
+def getScoreHistogram(request):
+    import matplotlib.pyplot as plt 
+    import seaborn as sns
+    import io
+    from PIL import Image
+
+    scores = [float(x.score) for x in Feedback.objects.all()]
+    
+    fig = plt.figure(figsize=(4, 2), dpi=300)
+    ax = sns.distplot(scores)
+    fig = ax.get_figure()
+    ax.set_xlim((-1.2,1.2))
+    ax.set_xlabel("Feedback Scores")
+    ax.axes.get_yaxis().set_visible(False)
+    ax.axes.get_yaxis().set_ticks([])
+    ax.set_frame_on(False)
+    ax.spines['bottom'].set_visible(True)
+    ax.axes.get_xaxis().set_visible(True)
+
+    buf = io.BytesIO()
+    fig.savefig(buf)
+    buf.seek(0)
+    img = Image.open(buf)
+
+    response = HttpResponse(content_type="image/png")
+    img.save(response, "PNG")
+    return response
+
+
+def submitImage(request):
+    import requests
+
+    URL = "https://hackathon.tim.it/peddetect/detect"
+
+    filename = "./security_images/0.jpeg"
+
+    headers = {
+        'Content-Type': 'image/*',
+        'apikey': TIM_API_KEY
+    }
+
+    with open(filename, 'rb') as f:
+        data = f.read()
+
+    response = requests.post(URL, headers=headers, data=data)
+
+    print("Status code: {}".format(response.status_code))
+    print("Header: {}".format(response.headers))
+    print("Text: {}".format(response.text))
+
+    return HttpResponse(content=response.text, content_type="application/json")

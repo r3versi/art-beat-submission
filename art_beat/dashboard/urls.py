@@ -10,9 +10,12 @@ urlpatterns = [
     path("api/getSecurityCamFrame/", apis.getSecurityCamFrame),
     path("api/getAudioFeedback/", apis.getAudioFeedback),
     path("api/submitSpeech/<slug:language>/<slug:filename>", apis.submitSpeech),
+    path("api/submitImage", apis.submitImage),
     path("api/retrieveSpeechesTranscripted", apis.retrieveSpeechesTranscripted),
     path("api/runSentimentAnalysis", apis.runSentimentAnalysis),
     path("api/getWordCloud", apis.getWordCloud, name="get-word-cloud"),
+    path("api/getScoreHistogram", apis.getScoreHistogram, name="get-score-histogram"),
+    
     path("feedbacks/", views.feedbacks, name="feedbacks"),
     path("security/", views.security, name="security"),
     path("environment/", views.environment, name="environment"),
