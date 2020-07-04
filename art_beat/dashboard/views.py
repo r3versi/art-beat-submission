@@ -14,7 +14,17 @@ def index(request):
 
 
 def security(request):
-    context = {}
+    out_rooms = []
+
+    for room in Room.objects.all():
+        visitors = 0
+        for camera in Camera.objects.filter(room=room):
+            visitors += CameraVisitors.objects.filter(camera=camera).last().visitors
+        
+        room.visitors = visitors
+        out_rooms.append(room)
+
+    context = {"rooms": out_rooms}
     return render(request, "security.html", context)
 
 

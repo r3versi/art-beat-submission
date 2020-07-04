@@ -8,7 +8,37 @@
 {% block content %}
 
 <div class="row">
-
+    <div class="col-xl-2 col-md-2">
+        <div class="card user-list">
+            <div class="card-header">
+                <h5>Plant</h5>
+            </div>
+            <div class="card-block">
+                <div id="plant"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-10 col-md-10">
+        <div class="card user-list">
+            <div class="card-header">
+                <h5>People inside the museum</h5>
+            </div>
+            <div class="card-block">
+                <div class="col-xl-12 text-center">
+                    <div class="plant-bg">
+                        {% for room in rooms %}
+                        <span class="dot" style="
+                                    position: absolute;
+                                    left:{{ room.x }}px;
+                                    top:{{ room.y }}px;">
+                                    {{ room.visitors }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-xl-6 col-md-6">
         <div class="card user-list">
             <div class="card-header">

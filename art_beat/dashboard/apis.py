@@ -189,31 +189,41 @@ def getScoreHistogram(request):
 
 
 def updateCameras(request):
+    from glob import glob
+    from random import choice
 
+    security_images = glob("security_images/*.jpeg")
     for camera in Camera.objects.filter(last_update__lte=timezone.now()-timedelta(seconds=300)):
         
+        security_image = choice(security_images)
+        response = runPedestrianDetection(security_image)
 
+        if "people" in response:
+            people = len(response["people"])
+        else:
+            people = 0
+        
+        cv = CameraVisitors(camera=camera, visitors=people)
+        cv.save()
 
+        camera.last_update = timezone.now()
+        camera.save()
 
-def submitImage(request):
-    import requests
+        print(camera, cv,  security_image, people)
 
-    URL = "https://hackathon.tim.it/peddetect/detect"
+def runPedestrianDetection(filename="security_images/0.jpeg"):
 
-    filename = "./security_images/0.jpeg"
-
+    with open("./%s" % filename, 'rb') as f:
+        data = f.read()
+    
     headers = {
         'Content-Type': 'image/*',
         'apikey': TIM_API_KEY
     }
-
-    with open(filename, 'rb') as f:
-        data = f.read()
-
-    response = requests.post(URL, headers=headers, data=data)
-
-    print("Status code: {}".format(response.status_code))
-    print("Header: {}".format(response.headers))
-    print("Text: {}".format(response.text))
-
-    return HttpResponse(content=response.text, content_type="application/json")
+    
+    response = requests.post(
+        "https://hackathon.tim.it/peddetect/detect", 
+        headers=headers, 
+        data=data)
+    
+    return json.loads(response.text)
