@@ -54,7 +54,7 @@
     background-image: url("../../plant.png");
     background-repeat: no-repeat;
     height: 397px;
-    background-position: center;
+    background-position: 80px top;
 }
 
 
@@ -66,6 +66,39 @@
   padding: 0.3%;
 }
 
+.big-dot {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 0.3%;
+}
+
+.scale-up {
+    display: inline-block;
+    padding: 0.3%;
+    width:100%;
+}
+.scale-up:hover {
+    transform: scale(1.4);
+}
+
 .dot:hover {
     transform: scale(1.4);
+}
+
+.light-on {
+    color: orange;
+}
+
+.light-off {
+    color: slategrey;
+}
+
+.sensor-status-ok {
+
+}
+
+.sensor-status-no {
+    color: red;
 }

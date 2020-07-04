@@ -66,9 +66,11 @@
     </svg>
 
     <nav>
-        <a href="#0">
-            <img class="logo" src="#" alt="Qui va il logo">
-        </a>
+        <div class="text-center p-2">
+            <a href="{% url 'index' %}">
+                <img class="logo" src="/static/logo-white-on-green.png" alt="Art Beat" style="max-height: 70px;max-width: max-content;"/>
+            </a>
+        </div>
         <button class="toggle_mob_menu" aria-expanded="false" aria-label="open menu">
             <svg width="20" height="20" aria-hidden="true">
                 <use xlink:href="#down"></use>
@@ -110,7 +112,7 @@
                     <span>Environment</span>
                 </a>
             </li>
-
+<!--
             <li>
                 <button class="collapse-btn" aria-expanded="true" aria-label="collapse menu">
                     <svg aria-hidden="true">
@@ -118,6 +120,12 @@
                     </svg>
                     <span>Collapse</span>
                 </button>
+            </li>
+-->
+            <li>
+                <div class="p-2">
+                    Art Beat by Team 17
+                </div>             
             </li>
         </ul>
     </nav>

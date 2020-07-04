@@ -188,6 +188,37 @@ def getScoreHistogram(request):
     return response
 
 
+def updateLastSecurityImage(filename, bbox):
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as patches
+    from PIL import Image
+    import numpy as np
+
+    im = np.array(Image.open(filename), dtype=np.uint8)
+
+    fig,ax = plt.subplots(1)
+    ax.imshow(im)
+
+    for box in bbox:
+        if box["score"] < 90:
+            continue
+
+        rect = patches.Rectangle(
+                (box["x1"],box["y1"]),
+                box["x2"]-box["x1"],
+                box["y2"]-box["y1"],
+                linewidth=1,
+                edgecolor='r',
+                facecolor='none')
+        ax.add_patch(rect)
+
+    plt.axis('off')
+
+    plt.savefig("dashboard/static/last_surv_image.png",
+                format="png", 
+                bbox_inches="tight")
+
+
 def updateCameras(request):
     from glob import glob
     from random import choice
@@ -203,7 +234,8 @@ def updateCameras(request):
         response = runPedestrianDetection(security_image)
 
         if "people" in response:
-            people = len(response["people"])
+            people = sum([x["score"] >= 90 for x in response["people"]])
+            updateLastSecurityImage(security_image, response["people"])
         else:
             people = 0
         

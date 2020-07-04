@@ -8,14 +8,14 @@ class CheckUpdatesMiddleware:
     def __call__(self, request):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
+        apis.retrieveSpeechesTranscripted(request)
+        apis.runSentimentAnalysis(request)
+        apis.updateCameras(request)
 
         response = self.get_response(request)
 
         # Code to be executed for each request/response after
         # the view is called.
-        apis.retrieveSpeechesTranscripted(request)
-        apis.runSentimentAnalysis(request)
-        apis.updateCameras(request)
         
         return response
 

@@ -32,3 +32,5 @@ for (const link of menuLinks) {
             : this.removeAttribute("title");
     });
 }
+
+

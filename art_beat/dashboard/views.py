@@ -18,9 +18,13 @@ def security(request):
 
     for room in Room.objects.all():
         visitors = 0
+        last_update = None
         for camera in Camera.objects.filter(room=room):
             visitors += CameraVisitors.objects.filter(camera=camera).last().visitors
+            if last_update is None or camera.last_update > last_update: 
+                last_update = camera.last_update
         
+        room.last_update = last_update
         room.visitors = visitors
         room.capacity = int(floor(room.mq / 7.0))
 
@@ -40,9 +44,26 @@ def feedbacks(request):
 
 
 def environment(request):
+    import numpy as np
 
-    rooms = Room.objects.all()
-    context = {"rooms": rooms}
+    out_rooms = []
+    
+    
+    for room in Room.objects.all():
+        light_on = False
+        for camera in Camera.objects.filter(room=room):
+            light_on = light_on or (CameraVisitors.objects.filter(camera=camera).last().visitors > 0)
+
+        room.light_on = light_on    
+        room.temperature = np.clip(round(np.random.normal(22, 10), 1), -10, 40)
+        room.humidity = np.clip(round(np.random.normal(50, 20), 1),0,100)
+
+        room.is_temp_ok = room.temperature > 16 and room.temperature < 28
+        room.is_hum_ok = room.humidity > 35 and room.humidity < 65
+
+        out_rooms.append(room)
+    
+    context = {"rooms": out_rooms}
 
     return render(request, "environment.html", context)
 
