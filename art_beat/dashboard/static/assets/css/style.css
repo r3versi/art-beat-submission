@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 @import url("../plugins/bootstrap/css/bootstrap.min.css");
-@import url("../fonts/feather/css/feather.css");
-@import url("../plugins/jquery-scrollbar/css/jquery.scrollbar.min.css");
-@import url("../fonts/datta/datta-icon.css");
 
 * {
   padding: 0;

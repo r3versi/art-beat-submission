@@ -1,0 +1,235 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Environment {% endblock %}
+
+{% block stylesheets %}
+    <link href="/static/assets/css/audience.css" type="text/css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+
+<section class="grid">
+    <article>
+        <div id="chart_div"></div>
+    </article>
+    <article>
+        <div id="piechart_3d"></div>
+    </article>
+    <article>
+        <div id="donutchart"></div>
+    </article>
+    <article>
+        <div id="curve_chart"></div>
+    </article>
+    <article>
+        <p class="proportion">La reale proporzione di Feedback positivi nell'intera popolazione di visitatori del museo
+            è stimata tra xx% e yy% (Intervallo di confidenza: 95%)</p>
+    </article>
+    <article>
+        <div id="chart_div2"></div>
+    </article>
+    <article>
+        <div id="chart_div3"></div>
+    </article>
+    <article>
+        <div id="chart_div4"></div>
+    </article>
+    <article>
+        <div id="chart_div5"></div>
+    </article>
+    <article>
+        <section class="regression">
+            <p>Affidabilità Modello: 99%</p>
+            <p>Per ogni Euro in più di Prezzo Biglietto: - xxx Visitatori</p>
+            <p>Per ogni Euro in più di Costo Mostra: + xxx Visitatori</p>
+            <p class="second">Per ogni Pezzo Esposto in più: + xxx Visitatori</p>
+            <p class="second">Per ogni Euro in più di Marketing: + xxx Visitatori</p>
+        </section>
+    </article>
+</section>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Country', 'Visitors per '],
+                ['Counry 1', 11],
+                ['Country 2', 2],
+                ['Country 3', 2],
+                ['Country 4', 2],
+                ['Others', 7]
+            ]);
+
+            var options = {
+                title: 'Visitors per Country (Monthly average)',
+                is3D: true,
+                colors: ['#064739', '#008450', '#00AB50', '#00FC8F', '#42CDAB'],
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Cities', 'Visitors'],
+                ['City 1', 11],
+                ['City 2', 2],
+                ['City 3', 2],
+                ['City 4', 2],
+                ['City 5', 7]
+            ]);
+
+            var options = {
+                title: 'Visitors per City in COUNTRY (Monthly average)',
+                pieHole: 0.4,
+                colors: ['#064739', '#008450', '#00AB50', '#00FC8F', '#42CDAB'],
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Age Range', 'N. of visitors', { role: 'style' }],
+                ['0-18', 8175000, '#064739'],
+                ['18-25', 3792000, '#008450'],
+                ['25-40', 2695000, '#00AB50'],
+                ['40-60', 2099000, '#00FC8F'],
+                ['60+', 1526000, '#42CDAB']
+            ]);
+
+            var options = {
+                title: 'Number of Visitors per Age',
+                chartArea: { width: '50%' },
+                hAxis: {
+                    title: 'Visitors',
+                    minValue: 0,
+                    legend: 'none',
+                },
+                vAxis: {
+                    title: 'Age'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Prezzo biglietto', 'N. Visitatori'],
+                [15, 30000], [14, 35000], [15, 50000], [12, 45000], [10, 60000], [10, 80000], [16, 23000]]);
+
+            var options = {
+                title: 'Numero Visitatori vs. Prezzo Biglietto',
+                hAxis: { title: 'Prezzo Biglietto' },
+                vAxis: { title: 'Numero Visitatori' },
+                legend: 'none',
+                trendlines: { 0: {} }    // Draw a trendline for data series 0.
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Costo Mostra', 'N. Visitatori'],
+                [36800, 30000], [34000, 35000], [66000, 50000], [45400, 45000], [53100, 60000], [55600, 80000], [37600, 23000]]);
+
+            var options = {
+                title: 'Numero Visitatori vs. Costo Mostra',
+                hAxis: { title: 'Costo Mostra' },
+                vAxis: { title: 'Numero Visitatori' },
+                legend: 'none',
+                trendlines: { 0: {} }    // Draw a trendline for data series 0.
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('chart_div3'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['N. Pezzi', 'N. Visitatori'],
+                [170, 30000], [150, 35000], [280, 50000], [50, 45000], [130, 60000], [220, 80000], [130, 23000]]);
+
+            var options = {
+                title: 'Numero Visitatori vs. Numero Pezzi',
+                hAxis: { title: 'Numero Pezzi' },
+                vAxis: { title: 'Numero Visitatori' },
+                legend: 'none',
+                trendlines: { 0: {} }    // Draw a trendline for data series 0.
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('chart_div4'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Marketing Budget', 'N. Visitatori'],
+                [3000, 30000], [4000, 35000], [5000, 50000], [2500, 45000], [1800, 60000], [6000, 80000], [4500, 23000]]);
+
+            var options = {
+                title: 'Numero Visitatori vs. Marketing Budget',
+                hAxis: { title: 'Markting Budget' },
+                vAxis: { title: 'Numero Visitatori' },
+                legend: 'none',
+                trendlines: { 0: {} }    // Draw a trendline for data series 0.
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('chart_div5'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Quarters', 'Positivo', 'Negativo'],
+                ['1', 1000, 400],
+                ['2', 1170, 460],
+                ['3', 660, 1120],
+                ['4', 1030, 540]
+            ]);
+
+            var options = {
+                title: 'Feedback Visitatori',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock javascripts %}

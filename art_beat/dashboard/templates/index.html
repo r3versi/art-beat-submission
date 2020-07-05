@@ -2,14 +2,54 @@
 
 {% block title %} Dashboard {% endblock %} 
 
-<!-- Specific CSS goes HERE -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+    <link href="/static/assets/css/home.css" type="text/css" rel="stylesheet">
+{% endblock stylesheets %}
 
 {% block content %}
+        <div class="col-xl-12 text-center p-5">
+            <div>
+                <img src="/static/assets/images/logo-black-on-red.png" />
+            </div>
+            <div>A trailblazing platform to manage data analytics for Cultural Heritage institutions.</div>
+        </div>
+        
+        <div class="row p-5 mt-5 text-center">
+            <div class="col-xl-3">
+                <section class="Anna">
+                    <div class="dot-pic bg-anna"></div>
+                    <div>
+                        <h3>ANNA DE LUCA</h3>
+                        <p>Laureanda Magristrale in Ingegneria delle Telecomunicazioni</p>
+                    </div>
+                </section>
+            </div>
 
-<div>
-    Hello!
-</div>
+            <div class="col-xl-3">
+                <section class="Alessia">
+                    <div class="dot-pic bg-ale"></div>
+                    <h3>ALESSIA FESTA</h3>
+                            <p>Laureanda Magistrale in Ingegneria Biomedica</p>
+                </section>
+            </div>
+
+            <div class="col-xl-3">
+                <section class="Raffaele">
+                    <div class="dot-pic bg-raf"></div>
+                    <h3>RAFFAELE CAPASSO</h3>
+                            <p id="move1">Laureando Magistrale in Innovation & International Management</p>
+                </section>
+            </div>
+
+            <div class="col-xl-3">
+                <section class="Federico">
+                    <div class="dot-pic bg-fede"></div>
+                    <h3>FEDERICO LUONGO</h3>
+                            <p id="move2">Laureando Magistrale in Fisica</p>
+                </section>
+            </div>
+        </div>
+
 
 {% endblock content %}
 

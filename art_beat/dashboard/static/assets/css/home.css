@@ -1,0 +1,24 @@
+.dot-pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 0.3%;
+  background-size: 100px 100px;
+}
+
+.bg-anna {
+  background-image: url("../images/team/Anna.jpeg");
+}
+
+.bg-fede {
+  background-image: url("../images/team/Federico.jpeg");
+}
+
+.bg-raf {
+  background-image: url("../images/team/Raff.jpeg");
+}
+
+.bg-ale {
+  background-image: url("../images/team/Alessia.jpeg");
+}

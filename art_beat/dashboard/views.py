@@ -48,14 +48,13 @@ def environment(request):
 
     out_rooms = []
     
-    
     for room in Room.objects.all():
         light_on = False
         for camera in Camera.objects.filter(room=room):
             light_on = light_on or (CameraVisitors.objects.filter(camera=camera).last().visitors > 0)
 
         room.light_on = light_on    
-        room.temperature = np.clip(round(np.random.normal(22, 10), 1), -10, 40)
+        room.temperature = np.clip(round(np.random.normal(22, 5), 1), 15, 35)
         room.humidity = np.clip(round(np.random.normal(50, 20), 1),0,100)
 
         room.is_temp_ok = room.temperature > 16 and room.temperature < 28
