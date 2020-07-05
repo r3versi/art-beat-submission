@@ -2,7 +2,7 @@
 
 Cartella Dropbox contenente Video Pitch e Presentazione: https://www.dropbox.com/sh/0ft4doxdpcn3azy/AAB0BHD6IjwzysDBysdc5goJa?dl=0
 
-Video Pitch: 
+Video Pitch: Nella cartella Dropbox
 
 Presentazione (.pptx): https://www.dropbox.com/s/c70dbubflo2qksm/ART%20BEAT%20DIGITAL%20PLATFORM%20FOR%20MUSEUMS.pptx?dl=0
 
