@@ -2,9 +2,11 @@
 
 Cartella Dropbox contenente Video Pitch e Presentazione: https://www.dropbox.com/sh/0ft4doxdpcn3azy/AAB0BHD6IjwzysDBysdc5goJa?dl=0
 
-Video Pitch:
+Video Pitch: 
 
-Presentazione: 
+Presentazione (.pptx): https://www.dropbox.com/s/c70dbubflo2qksm/ART%20BEAT%20DIGITAL%20PLATFORM%20FOR%20MUSEUMS.pptx?dl=0
+
+Presentazione (.pdf): https://www.dropbox.com/s/ps0k2k97opc2rt7/ART%20BEAT%20DIGITAL%20PLATFORM%20FOR%20MUSEUMS.pdf?dl=0
 
 
 # Installation
